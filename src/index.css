@@ -90,7 +90,9 @@ footer {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  
 }
+
 .producto img {
   max-width: 37rem;
   max-height: 37rem;
@@ -100,8 +102,8 @@ footer {
   justify-content: space-between;
   align-items: center;
 }
-.producto-price div,
-.producto-price button {
+.producto-precio div,
+.producto-precio button {
   text-align: center;
   flex: 1;
 }
