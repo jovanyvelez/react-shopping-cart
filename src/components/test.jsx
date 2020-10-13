@@ -8,17 +8,18 @@ export default class Products extends Component {
                 <ul className="productos">
                     {this.props.productos.map(producto => (
                         <li key={producto._id}>
-                            <div className="producto">
+                            <div className="jcard">
                                 <a href={"#" + producto._id}>
-                                    <img src={producto.imagen} alt={producto.nombre}></img>
-                                    <p>{producto.title}</p>
+                                    <img className="jimagen" src={producto.imagen} alt={producto.nombre}/>
+                                    <p>{producto.nombre}</p>
                                 </a>
-                                <div className="producto-precio">
-                                    <div>{formatCurrency(producto.precio)}</div>
+                                <div className="jcontainer">
+                                    <div>{formatCurrency(producto.precio)}</div> 
                                     <button className="button primary" >
-                                        Add To Cart
+                                            Add To Cart
                                     </button>
                                 </div>
+                                    
                             </div>
                         </li>
                         ))
