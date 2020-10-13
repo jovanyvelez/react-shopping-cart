@@ -70,7 +70,9 @@ footer {
   flex: 1 20rem;
 }
 
-/* products */
+
+
+/* Seccion de products */
 .productos {
   display: flex;
   flex-wrap: wrap;
@@ -125,46 +127,16 @@ footer {
   background-color: #ffc000;
 }
 
+/* Seccion filtro */
 
-
-/*estilos para mi tarjeta*/
-.jcard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin: 1.5rem;
-  width: 47rem;
+.filtro{
   display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.jcard a{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-/* .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
- */
-.jcontainer {
-
-  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
   justify-content: space-between;
-  align-items: center;
-  width: 85%;
 }
 
-.jcontainer div, 
-.jcontainer button{
-  flex-grow: 1;
-}
-
-.jimagen{
-  padding-top: 1rem;
-  width:100%;
-  max-height: 70%;
-  max-width: 75%;
-  
+.filtro div{
+  flex:1;
 }
