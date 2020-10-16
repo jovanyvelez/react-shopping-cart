@@ -6,7 +6,6 @@ export default class Carrito extends Component {
         const {productosCarrito}= this.props
         return (
             <div>
-
                 <div>
                     {productosCarrito.length === 0?<div className= "carro carro-encabezado">No hay compras</div>
                     : <div className= "carro carro-encabezado">Seleccionados {productosCarrito.length} productos {" "}</div>}   
@@ -28,8 +27,7 @@ export default class Carrito extends Component {
                                         <button onClick={()=> this.props.sacarDelCarrito(producto)}>
                                             Quitar
                                         </button>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
                             </li>
                         ))}
