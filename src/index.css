@@ -140,3 +140,58 @@ footer {
 .filtro div{
   flex:1;
 }
+
+/* indice.css */
+
+.carro{
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+}
+
+.carro-encabezado{
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+
+.carro-articulos{
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+
+.carro-articulos img{
+
+  width: 5rem;
+
+}
+
+.carro-articulos li{
+  display: flex;
+}
+
+.carro-articulos li div{
+  padding: 0.5rem;
+}
+
+.carro-articulos li div:last-child{
+  flex:1;
+}
+
+.right{
+  text-align: right;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.total > div{
+  font-size: 2rem;
+}
+.total > div,
+.total > button {
+  flex: 1;
+}
+

@@ -8,9 +8,9 @@ export default class Filter extends Component {
                 <div className="filtro-orden">
                     Ordenar{" "}
                     <select value={this.props.ordenar} onChange={this.props.ordenarProductos}>
-                        <option value="latest">Latest</option>
-                        <option value="lowest">Lowest</option>
-                        <option value="highest">Highest</option>
+                        <option value="latestCo">Todo</option>
+                        <option value="lowest">Menor a mayor</option>
+                        <option value="highest">Mayor a menor</option>
                     </select>
                 </div>
                 <div className="filtro-talla">
