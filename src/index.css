@@ -110,7 +110,7 @@ footer {
   text-align: center;
   flex: 1;
 }
-.producto-price div {
+.producto-precio div {
   font-size: 2rem;
 }
 .button {
@@ -218,4 +218,32 @@ input{
   display: flex;
   flex-direction: column;
   padding: 1rem;
+}
+
+/* Modal */
+
+.producto-detalles{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-height: 96vh;
+}
+
+.producto-detalles img{
+  max-height: 100vh;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.producto-detalles-descripcion{
+
+  flex: 1 1;
+  margin: 1rem;
+}
+
+.cerrar-modal{
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+  z-index: 1000;
 }
