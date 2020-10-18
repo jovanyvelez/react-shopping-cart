@@ -8,22 +8,27 @@ import Carrito from './components/Carrito';
 class App extends React.Component {
   
   constructor(){
-    super();
+    super()
     this.state = {
       productos: data.productos,
-      productosCarrito: [],
+      productosCarrito: localStorage.getItem("productosCarrito") 
+      ? JSON.parse(localStorage.getItem("productosCarrito"))
+      : [],
       talla:"",
       ordenar:"",
     }
   }
 
-  
+  crearOrden = (orden) => {
+    alert(orden.nombre)
+  }
 
   sacarDelCarrito = (producto)=>{
     const productosCarrito = this.state.productosCarrito.slice()
+    const nuevoCarrito= productosCarrito.filter(x => x._id !== producto._id)
     this.setState(
-      {productosCarrito:productosCarrito.filter(x => x._id !== producto._id)})
-    
+      {productosCarrito: nuevoCarrito})
+      localStorage.setItem("productosCarrito",JSON.stringify(nuevoCarrito))
   }
 
 
@@ -42,7 +47,9 @@ class App extends React.Component {
       productosCarrito.push({...producto, cantidad:1})
            
     }
-    this.setState({productosCarrito}) 
+    this.setState({productosCarrito})
+    localStorage.setItem("productosCarrito",JSON.stringify(productosCarrito))
+    //console.log(JSON.parse(localStorage.getItem("productosCarrito")))
   }
 
   ordenarProductos = (e)=>{
@@ -108,7 +115,8 @@ class App extends React.Component {
             </div>
             <div className="sidebar">
               <Carrito  productosCarrito={this.state.productosCarrito}
-                        sacarDelCarrito={this.sacarDelCarrito}/>
+                        sacarDelCarrito={this.sacarDelCarrito}
+                        crearOrden={this.crearOrden}/>
             </div>
           </div>
         </main>
