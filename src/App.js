@@ -3,6 +3,8 @@ import data from './data.json'
 import Productos from './components/ProductosComponent'
 import Filter from './components/Filter';
 import Carrito from './components/Carrito';
+import store from './store'
+import { Provider } from 'react-redux';
 
 
 class App extends React.Component {
@@ -96,32 +98,34 @@ class App extends React.Component {
   
   render (){
     return (
-      <div className="grid-container">
-        <header>
-          <a href="/">Carro de compras</a>
-        </header>
-        <main>
-          <div className="content">
-            <div className="main">
-              <Filter count={this.state.productos.length}
-                      talla={this.state.talla}
-                      ordenar={this.state.ordenar}
-                      filtrarProductos= {this.filtrarProductos}
-                      ordenarProductos= {this.ordenarProductos}
-              />
-              <Productos productos = {this.state.productos}
-                         agregarAlCarrito={this.agregarAlCarrito}
-              />
+      <Provider store={store}>
+        <div className="grid-container">
+          <header>
+            <a href="/">Carro de compras</a>
+          </header>
+          <main>
+            <div className="content">
+              <div className="main">
+                <Filter count={this.state.productos.length}
+                        talla={this.state.talla}
+                        ordenar={this.state.ordenar}
+                        filtrarProductos= {this.filtrarProductos}
+                        ordenarProductos= {this.ordenarProductos}
+                />
+                <Productos productos = {this.state.productos}
+                          agregarAlCarrito={this.agregarAlCarrito}
+                />
+              </div>
+              <div className="sidebar">
+                <Carrito  productosCarrito={this.state.productosCarrito}
+                          sacarDelCarrito={this.sacarDelCarrito}
+                          crearOrden={this.crearOrden}/>
+              </div>
             </div>
-            <div className="sidebar">
-              <Carrito  productosCarrito={this.state.productosCarrito}
-                        sacarDelCarrito={this.sacarDelCarrito}
-                        crearOrden={this.crearOrden}/>
-            </div>
-          </div>
-        </main>
-        <footer>allright is reserved.</footer>
-      </div>
+          </main>
+          <footer>allright is reserved.</footer>
+        </div>
+      </Provider>
     );
   }
 }
