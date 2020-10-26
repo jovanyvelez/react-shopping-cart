@@ -19,8 +19,8 @@ class Productos extends Component {
 
     componentDidMount(){
         this.props.fetchProductos()
-        console.log(this.props)
     }
+    
     abrirModal = (producto) => {
         this.setState({producto})
     }   
@@ -109,6 +109,6 @@ class Productos extends Component {
 }
 
 
-export default connect((state)=>({productos: state.productos.productos}), {
+export default connect((state)=>({productos: state.productos.productosFiltrados}), {
     fetchProductos,
 })(Productos)
