@@ -1,4 +1,5 @@
 import React from 'react';
+import data from './data.json'
 import Productos from './components/ProductosComponent'
 import Filter from './components/Filter';
 import Carrito from './components/Carrito';
@@ -11,9 +12,12 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
+      productos: data.productos,
       productosCarrito: localStorage.getItem("productosCarrito") 
       ? JSON.parse(localStorage.getItem("productosCarrito"))
       : [],
+      talla:"",
+      ordenar:"",
     }
   }
 
