@@ -4,6 +4,8 @@ import Fade from 'react-reveal/Fade'
 
 export default class Carrito extends Component {
 
+
+
     constructor(props){
         super(props)
         this.state={

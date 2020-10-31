@@ -66,7 +66,7 @@ class App extends React.Component {
               </div>
               <div className="sidebar">
                 <Carrito  productosCarrito={this.state.productosCarrito}
-                          sacarDelCarrito={this.sacarDelCarrito}
+                          
                           crearOrden={this.crearOrden}/>
               </div>
             </div>
