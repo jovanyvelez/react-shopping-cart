@@ -1,4 +1,5 @@
 import React from 'react';
+import data from './data.json'
 import Productos from './components/ProductosComponent'
 import Filter from './components/Filter';
 import Carrito from './components/Carrito';
@@ -11,9 +12,12 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
+      productos: data.productos,
       productosCarrito: localStorage.getItem("productosCarrito") 
       ? JSON.parse(localStorage.getItem("productosCarrito"))
       : [],
+      talla:"",
+      ordenar:"",
     }
   }
 
@@ -28,6 +32,8 @@ class App extends React.Component {
       {productosCarrito: nuevoCarrito})
       localStorage.setItem("productosCarrito",JSON.stringify(nuevoCarrito))
   }
+
+
 
   agregarAlCarrito = (producto) => {
     const productosCarrito = this.state.productosCarrito.slice()
@@ -45,10 +51,49 @@ class App extends React.Component {
     }
     this.setState({productosCarrito})
     localStorage.setItem("productosCarrito",JSON.stringify(productosCarrito))
+    //console.log(JSON.parse(localStorage.getItem("productosCarrito")))
   }
 
-  
+  ordenarProductos = (e)=>{
+    console.log(e.target.value)
+    const ordenar = e.target.value
+    switch (ordenar) {
+      case 'lowest':
+        this.setState({
+          ordenar:ordenar,
+          productos: this.state.productos.sort((a,b)=>a.precio-b.precio)
+        })
+        break
+      case 'highest':
+        this.setState({
+          ordenar:ordenar,
+          productos: this.state.productos.sort((a,b)=>b.precio-a.precio)
+        })
+        break;
+      default:
+          this.setState({
+            ordenar:ordenar,
+            productos: this.state.productos.sort((a,b)=>
+              a._id<b._id?-1:1
+            )
+          })
+    }
     
+  }
+    
+
+  filtrarProductos = (e)=>{
+    if(e.target.value===""){
+      this.setState({talla: e.target.value, 
+        productos: data.productos})
+    }else
+    {
+      this.setState({talla: e.target.value, 
+        productos: data.productos.filter(
+          producto => producto.tallasDisponibles.indexOf(e.target.value)>=0)})
+      console.log(e.target.value)
+      }
+  } 
 
   
   render (){
@@ -61,11 +106,20 @@ class App extends React.Component {
           <main>
             <div className="content">
               <div className="main">
-                <Filter/>
-                <Productos agregarAlCarrito={this.agregarAlCarrito}/>
+                <Filter count={this.state.productos.length}
+                        talla={this.state.talla}
+                        ordenar={this.state.ordenar}
+                        filtrarProductos= {this.filtrarProductos}
+                        ordenarProductos= {this.ordenarProductos}
+                />
+                <Productos productos = {this.state.productos}
+                          agregarAlCarrito={this.agregarAlCarrito}
+                />
               </div>
               <div className="sidebar">
-                
+                <Carrito  productosCarrito={this.state.productosCarrito}
+                          sacarDelCarrito={this.sacarDelCarrito}
+                          crearOrden={this.crearOrden}/>
               </div>
             </div>
           </main>
