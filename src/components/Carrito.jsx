@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import formatCurrency from '../util'
 import Fade from 'react-reveal/Fade'
+import { connect } from 'react-redux'
+import { sacarDelCarro } from '../actions/cartActions'
 
-export default class Carrito extends Component {
+class Carrito extends Component {
 
     constructor(props){
         super(props)
@@ -26,24 +28,24 @@ export default class Carrito extends Component {
             nombre: this.state.nombre,
             email: this.email,
             direccion: this.direccion,
-            productosCarrito: this.props.productosCarrito,
+            productosCarrito: this.props.carro,
         }
         this.props.crearOrden(orden)
     }
 
     render() {
-        const {productosCarrito}= this.props
+        const {productosCarro} = this.props
         return (
             <div>
                 <div>
-                    {productosCarrito.length === 0?<div className= "carro carro-encabezado">No hay compras</div>
-                    : <div className= "carro carro-encabezado">Seleccionados {productosCarrito.length} productos {" "}</div>}   
+                    {productosCarro.length === 0?<div className= "carro carro-encabezado">No hay compras</div>
+                    : <div className= "carro carro-encabezado">Seleccionados {productosCarro.length} productos {" "}</div>}   
                 </div>
 
                 <div className="carro">
                     <Fade left cascade>
                         <ul className="carro-articulos">
-                            {productosCarrito.map(producto=>(
+                            {productosCarro.map(producto=>(
                                 <li key={producto._id}>
                                     <div>
                                         <img src={producto.imagen} alt={producto.nombre}></img>  
@@ -54,7 +56,7 @@ export default class Carrito extends Component {
                                         </div>
                                         <div className="rigth">
                                             {formatCurrency(producto.precio)} x {producto.cantidad} {" "}
-                                            <button onClick={()=> this.props.sacarDelCarrito(producto)}>
+                                            <button onClick={()=> this.props.sacarDelCarro(producto)}>
                                                 Quitar
                                             </button>
                                         </div>                                    
@@ -64,14 +66,14 @@ export default class Carrito extends Component {
                         </ul>
                     </Fade>
                 </div>
-                {productosCarrito.length !== 0 && (
+                {productosCarro.length !== 0 && (
                     <div>    
                         <div className="carro">
                             <div className="total">
                                 <div>
                                     Total:{" "} 
                                     {formatCurrency(
-                                        productosCarrito.reduce( (a,c) => a+(c.precio*c.cantidad), 0)
+                                        productosCarro.reduce( (a,c) => a+(c.precio*c.cantidad), 0)
                                     )}
                                 </div>
                                 <button 
@@ -125,6 +127,13 @@ export default class Carrito extends Component {
                     </div>
                 )}            
             </div>
-        )
+        ) 
     }
 }
+
+export default connect(
+    (state) => ({
+        productosCarro: state.carro.productosCarro
+    }),
+     {sacarDelCarro}
+     )(Carrito)
