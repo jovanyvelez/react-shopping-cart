@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Productos from './components/ProductosComponent'
 import Filter from './components/Filter';
@@ -7,46 +8,6 @@ import { Provider } from 'react-redux';
 
 
 class App extends React.Component {
-  
-  constructor(){
-    super()
-    this.state = {
-      productosCarrito: localStorage.getItem("productosCarrito") 
-      ? JSON.parse(localStorage.getItem("productosCarrito"))
-      : [],
-    }
-  }
-
-  crearOrden = (orden) => {
-    alert(orden.nombre)
-  }
-
-  sacarDelCarrito = (producto)=>{
-    const productosCarrito = this.state.productosCarrito.slice()
-    const nuevoCarrito= productosCarrito.filter(x => x._id !== producto._id)
-    this.setState(
-      {productosCarrito: nuevoCarrito})
-      localStorage.setItem("productosCarrito",JSON.stringify(nuevoCarrito))
-  }
-
-  agregarAlCarrito = (producto) => {
-    const productosCarrito = this.state.productosCarrito.slice()
-    let yaEstaEnCarro = false
-    productosCarrito.forEach(item => {
-      if(item._id === producto._id){
-        item.cantidad++
-        yaEstaEnCarro = true
-      }
-    })
-    if(!yaEstaEnCarro){
-
-      productosCarrito.push({...producto, cantidad:1})       
-    }
-    this.setState({productosCarrito})
-    localStorage.setItem("productosCarrito",JSON.stringify(productosCarrito))
-    //console.log(JSON.parse(localStorage.getItem("productosCarrito")))
-  }
-  
   render (){
     return (
       <Provider store={store}>
@@ -58,12 +19,10 @@ class App extends React.Component {
             <div className="content">
               <div className="main">
                 <Filter/>
-                <Productos agregarAlCarrito={this.agregarAlCarrito}/>
+                <Productos/>
               </div>
               <div className="sidebar">
-                <Carrito  productosCarrito={this.state.productosCarrito}
-                          sacarDelCarrito={this.sacarDelCarrito}
-                          crearOrden={this.crearOrden}/>
+                <Carrito/>
               </div>
             </div>
           </main>
