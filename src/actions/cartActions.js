@@ -27,3 +27,4 @@ export const sacarDelCarro = (producto) => (dispatch, getState) => {
     dispatch({ type: SACAR_DEL_CARRO, payload: { productosCarro } });
     localStorage.setItem("productosCarro", JSON.stringify(productosCarro));
 }
+
